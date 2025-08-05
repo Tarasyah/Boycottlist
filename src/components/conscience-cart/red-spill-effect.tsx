@@ -23,7 +23,7 @@ export function RedSpillEffect({ onCompleted, drips = 15 }: RedSpillEffectProps)
         const style = {
           left: `${Math.random() * 100}%`,
           animationDelay: `${Math.random() * 1.5}s, ${Math.random() * 1.5 + 1}s`,
-          animationDuration: `${Math.random() * 1 + 1}s, 1s`,
+          animationDuration: `${Math.random() * 1 + 1.5}s, 1s`,
         };
         return (
           <div
