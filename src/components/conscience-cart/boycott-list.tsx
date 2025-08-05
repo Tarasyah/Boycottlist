@@ -63,7 +63,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       accessorKey: "Involvement",
       header: () => <div className="text-center">Involvement</div>,
       cell: ({ row }) => (
-        <div className="text-muted-foreground max-w-md sm:max-w-lg p-2 sm:p-4 text-center">
+        <div className="text-muted-foreground max-w-md sm:max-w-2xl p-2 sm:p-4 text-center">
           {row.getValue("Involvement")}
         </div>
       ),
@@ -74,7 +74,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       cell: ({ row }) => {
         const value = row.getValue("Sub-companies / Brands") as { Brands: string };
         const brands = value?.Brands?.trim();
-        return <div className="p-2 sm:p-4 w-48 text-center">{brands ? brands : "N/A"}</div>;
+        return <div className="p-2 sm:p-4 w-40 text-center">{brands ? brands : "N/A"}</div>;
       },
     },
     {
