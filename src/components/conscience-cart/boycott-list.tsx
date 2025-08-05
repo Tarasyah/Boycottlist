@@ -129,7 +129,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                   onClick={handleRowClick}
-                  className="cursor-pointer"
+                  className="cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="py-3 px-4">
