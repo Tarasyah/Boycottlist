@@ -48,24 +48,6 @@ export default async function Home() {
         <BoycottList companies={companies} />
       </main>
 
-      <div className="mt-12">
-        <Card>
-          <CardHeader className="flex-row items-center gap-4">
-            <ListTree className="h-8 w-8 text-primary" />
-            <CardTitle>List Summary</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg">
-              This guide currently lists{" "}
-              <span className="font-bold text-primary">
-                {companies.length}
-              </span>{" "}
-              companies to be aware of.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
       <footer className="mt-12">
         <Card>
           <CardHeader>
@@ -76,16 +58,16 @@ export default async function Home() {
               The information in this guide is compiled from the following
               publicly available resources:
             </p>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {sources.map((source) => (
                 <li key={source.name}>
                   <a
                     href={source.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-primary hover:underline"
+                    className="flex items-center gap-2 text-primary hover:underline text-lg font-semibold"
                   >
-                    <ExternalLink className="h-4 w-4" />
+                    <ExternalLink className="h-5 w-5" />
                     <span>{source.name}</span>
                   </a>
                 </li>
