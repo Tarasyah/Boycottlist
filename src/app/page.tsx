@@ -49,11 +49,12 @@ export default async function Home() {
       </main>
 
       <footer className="mt-12">
-        <Card className="mb-4 hover:bg-destructive/10 transition-colors duration-500 ease-in-out">
-          <CardContent className="p-4 text-center">
+        <Card className="mb-4 relative bg-card overflow-hidden group">
+          <div className="absolute inset-0 bg-destructive/80 transition-all duration-500 ease-in-out transform -translate-x-full group-hover:translate-x-0"></div>
+          <CardContent className="p-4 text-center relative z-10 group-hover:text-destructive-foreground transition-colors duration-500">
             <p>
               This list currently includes{" "}
-              <span className="font-bold text-primary">{companies.length}</span>{" "}
+              <span className="font-bold text-primary group-hover:text-destructive-foreground">{companies.length}</span>{" "}
               companies.
             </p>
           </CardContent>
