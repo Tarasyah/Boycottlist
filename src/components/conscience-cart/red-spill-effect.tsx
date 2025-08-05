@@ -30,11 +30,11 @@ export function RedSpillEffect({ onCompleted, rockets = 15 }: RedSpillEffectProp
           <div
             key={i}
             className={cn(
-              "absolute top-0 text-red-700/80 animate-fall",
+              "absolute top-0 text-red-800 animate-fall",
             )}
             style={style}
           >
-            <Rocket className="w-8 h-8" />
+            <Rocket className="w-6 h-6 rotate-[135deg]" />
           </div>
         );
       })}

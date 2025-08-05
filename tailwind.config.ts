@@ -90,7 +90,7 @@ export default {
         },
         fall: {
           '0%': { transform: 'translateY(-100%)', opacity: '1' },
-          '100%': { transform: 'translateY(100vh)', opacity: '0' },
+          '100%': { transform: 'translateY(100vh) rotate(135deg)', opacity: '0.5' },
         },
       },
       animation: {
