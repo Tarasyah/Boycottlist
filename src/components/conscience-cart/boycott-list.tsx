@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import type {
   ColumnDef,
   ColumnFiltersState,
@@ -33,23 +32,6 @@ export function BoycottList({ companies }: { companies: Company[] }) {
   const [isSpilling, setIsSpilling] = React.useState(false);
 
   const columns: ColumnDef<Company>[] = [
-    {
-      accessorKey: "logo",
-      header: () => <div className="sr-only">Logo</div>,
-      cell: ({ row }) => (
-        <div className="flex items-center justify-center p-1 bg-white rounded-md w-12 h-12 shadow-sm">
-          <Image
-            src={`https://placehold.co/40x40.png`}
-            data-ai-hint={row.original.logo}
-            alt={`${row.original.name} logo`}
-            width={40}
-            height={40}
-            className="object-contain"
-          />
-        </div>
-      ),
-      enableSorting: false,
-    },
     {
       accessorKey: "name",
       header: "Company",
@@ -125,7 +107,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
                   className="cursor-pointer"
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="py-3">
+                    <TableCell key={cell.id} className="py-3 px-4">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
