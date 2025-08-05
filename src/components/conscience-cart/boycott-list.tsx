@@ -63,7 +63,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       accessorKey: "Involvement",
       header: () => <div className="text-center">Involvement</div>,
       cell: ({ row }) => (
-        <div className="text-muted-foreground max-w-sm sm:max-w-md p-2 sm:p-4 text-center">
+        <div className="text-muted-foreground max-w-md sm:max-w-lg p-2 sm:p-4 text-center">
           {row.getValue("Involvement")}
         </div>
       ),
