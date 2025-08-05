@@ -6,6 +6,7 @@ import type {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
+  FilterFn,
 } from "@tanstack/react-table";
 import {
   flexRender,
@@ -28,6 +29,15 @@ import {
 import { Button } from "@/components/ui/button";
 import type { Company } from "@/types";
 import { RedSpillEffect } from "./red-spill-effect";
+
+const globalFilterFn: FilterFn<any> = (row, columnId, value, addMeta) => {
+  const companyName = row.getValue("Company Name") as string;
+  const subBrands = (row.getValue("Sub-companies / Brands") as { Brands: string })?.Brands || "";
+
+  const searchableContent = `${companyName} ${subBrands}`.toLowerCase();
+  
+  return searchableContent.includes(String(value).toLowerCase());
+};
 
 export function BoycottList({ companies }: { companies: Company[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -80,6 +90,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onGlobalFilterChange: setGlobalFilter,
+    globalFilterFn: globalFilterFn,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
