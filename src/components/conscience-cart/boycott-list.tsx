@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -55,7 +56,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
     },
     {
       accessorKey: "Sub-companies / Brands",
-      header: "Sub-companies / Brands",
+      header: "Sub-companies",
       cell: ({ row }) => {
         const value = row.getValue("Sub-companies / Brands") as { Brands: string };
         const brands = value?.Brands?.trim();
