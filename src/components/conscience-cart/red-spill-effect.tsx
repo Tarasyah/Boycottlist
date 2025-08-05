@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Rocket } from 'lucide-react';
+import { PenTool } from 'lucide-react';
 
 interface RedSpillEffectProps {
   onCompleted: () => void;
@@ -34,7 +34,7 @@ export function RedSpillEffect({ onCompleted, rockets = 15 }: RedSpillEffectProp
             )}
             style={style}
           >
-            <Rocket className="w-6 h-6 rotate-[135deg]" />
+            <PenTool className="w-6 h-6" />
           </div>
         );
       })}
