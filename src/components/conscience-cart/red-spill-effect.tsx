@@ -23,14 +23,14 @@ export function RedSpillEffect({ onCompleted, rockets = 15 }: RedSpillEffectProp
       {Array.from({ length: rockets }).map((_, i) => {
         const style = {
           left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          animationDuration: `${Math.random() * 0.5 + 0.5}s`,
+          animationDuration: `${Math.random() * 1 + 1}s`,
+          animationDelay: `${Math.random() * 0.5}s`,
         };
         return (
           <div
             key={i}
             className={cn(
-              "absolute text-red-700/80 animate-[shake_ease-in-out_infinite,fade-out_forwards_1.5s]",
+              "absolute top-0 text-red-700/80 animate-fall",
             )}
             style={style}
           >
