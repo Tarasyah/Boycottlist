@@ -56,7 +56,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       accessorKey: "Company Name",
       header: () => <div className="text-center">Company</div>,
       cell: ({ row }) => (
-        <div className="font-semibold p-2 sm:p-4 w-48 text-center">{row.getValue("Company Name")}</div>
+        <div className="font-semibold p-2 sm:p-4 w-40 text-center">{row.getValue("Company Name")}</div>
       ),
     },
     {
@@ -97,7 +97,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
     getFilteredRowModel: getFilteredRowModel(),
     initialState: {
       pagination: {
-        pageSize: 40,
+        pageSize: 20,
       },
     },
     state: {
