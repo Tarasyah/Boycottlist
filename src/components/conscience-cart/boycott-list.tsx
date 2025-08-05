@@ -49,38 +49,38 @@ export function BoycottList({ companies }: { companies: Company[] }) {
   const columns: ColumnDef<Company>[] = [
     {
       accessorKey: "Category",
-      header: "Category",
-      cell: ({ row }) => <div className="p-2 sm:p-4 w-40">{row.getValue("Category")}</div>,
+      header: () => <div className="text-center">Category</div>,
+      cell: ({ row }) => <div className="p-2 sm:p-4 w-40 text-center">{row.getValue("Category")}</div>,
     },
     {
       accessorKey: "Company Name",
-      header: "Company",
+      header: () => <div className="text-center">Company</div>,
       cell: ({ row }) => (
-        <div className="font-semibold p-2 sm:p-4 w-48">{row.getValue("Company Name")}</div>
+        <div className="font-semibold p-2 sm:p-4 w-48 text-center">{row.getValue("Company Name")}</div>
       ),
     },
     {
       accessorKey: "Involvement",
-      header: "Involvement",
+      header: () => <div className="text-center">Involvement</div>,
       cell: ({ row }) => (
-        <div className="text-muted-foreground max-w-xs sm:max-w-sm p-2 sm:p-4">
+        <div className="text-muted-foreground max-w-xs sm:max-w-sm p-2 sm:p-4 text-center">
           {row.getValue("Involvement")}
         </div>
       ),
     },
     {
       accessorKey: "Sub-companies / Brands",
-      header: "Sub-companies",
+      header: () => <div className="text-center">Sub-companies</div>,
       cell: ({ row }) => {
         const value = row.getValue("Sub-companies / Brands") as { Brands: string };
         const brands = value?.Brands?.trim();
-        return <div className="p-2 sm:p-4 w-64">{brands ? brands : "N/A"}</div>;
+        return <div className="p-2 sm:p-4 w-64 text-center">{brands ? brands : "N/A"}</div>;
       },
     },
     {
       accessorKey: "Country",
-      header: "Country",
-      cell: ({ row }) => <div className="p-2 sm:p-4 w-32">{row.getValue("Country")}</div>,
+      header: () => <div className="text-center">Country</div>,
+      cell: ({ row }) => <div className="p-2 sm:p-4 w-32 text-center">{row.getValue("Country")}</div>,
     },
   ];
 
