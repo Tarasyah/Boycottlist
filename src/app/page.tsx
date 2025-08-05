@@ -49,12 +49,19 @@ export default async function Home() {
       </main>
 
       <footer className="mt-12">
+        <div className="text-center text-muted-foreground mb-4">
+          <p>
+            This list currently includes{" "}
+            <span className="font-bold text-primary">{companies.length}</span>{" "}
+            companies.
+          </p>
+        </div>
         <Card>
           <CardHeader>
             <CardTitle>Sources</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-muted-foreground mb-4 text-base">
               The information in this guide is compiled from the following
               publicly available resources:
             </p>
@@ -65,7 +72,7 @@ export default async function Home() {
                     href={source.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-primary hover:underline text-lg font-semibold"
+                    className="flex items-center gap-2 text-primary hover:underline text-lg font-bold"
                   >
                     <ExternalLink className="h-5 w-5" />
                     <span>{source.name}</span>
