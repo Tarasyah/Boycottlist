@@ -77,6 +77,11 @@ export function BoycottList({ companies }: { companies: Company[] }) {
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    initialState: {
+      pagination: {
+        pageSize: 40,
+      },
+    },
     state: {
       columnFilters,
     },
