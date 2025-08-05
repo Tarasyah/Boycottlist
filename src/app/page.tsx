@@ -24,6 +24,10 @@ export default async function Home() {
       name: "Who Profits",
       url: "https://www.whoprofits.org/companies/find?Text=&Name=&Category=&Sector=&Headquarter=&Revenue=&Traded=&Presence=&Settlement=&Type=Table",
     },
+    {
+      name: "BDS Movement",
+      url: "https://bdsmovement.net/Act-Now-Against-These-Companies-Profiting-From-Genocide",
+    },
   ];
 
   return (
