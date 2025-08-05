@@ -2,6 +2,12 @@ import type { Company } from '@/types';
 
 // This is mock data. In a real application, this would be fetched
 // from a database that is populated by the Boycott List Summarizer.
+//
+// TO USE YOUR OWN DATA:
+// 1. Convert your CSV file into a JSON array of objects.
+// 2. Paste your data here, replacing the mockCompanies array.
+// 3. Make sure your object keys match the 'Company' type properties:
+//    id, name, category, involvement, subCompanies, country, logo
 const mockCompanies: Company[] = [
   {
     id: '1',
