@@ -1,3 +1,4 @@
+
 import { BoycottList } from "@/components/conscience-cart/boycott-list";
 import { getBoycottList } from "@/lib/boycott-data";
 import {
@@ -6,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ExternalLink, Handshake } from "lucide-react";
+import { ExternalLink, Handshake, ListTree } from "lucide-react";
 
 export default async function Home() {
   const companies = await getBoycottList();
@@ -46,6 +47,24 @@ export default async function Home() {
       <main>
         <BoycottList companies={companies} />
       </main>
+
+      <div className="mt-12">
+        <Card>
+          <CardHeader className="flex-row items-center gap-4">
+            <ListTree className="h-8 w-8 text-primary" />
+            <CardTitle>List Summary</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-lg">
+              This guide currently lists{" "}
+              <span className="font-bold text-primary">
+                {companies.length}
+              </span>{" "}
+              companies to be aware of.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
 
       <footer className="mt-12">
         <Card>
