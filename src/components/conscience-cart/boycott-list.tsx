@@ -80,7 +80,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex justify-center items-center py-4">
         <Input
           placeholder="Filter by company name..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
