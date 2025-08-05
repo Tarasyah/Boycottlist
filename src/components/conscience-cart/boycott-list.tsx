@@ -160,7 +160,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
           placeholder="Search by company or brand..."
           value={globalFilter ?? ""}
           onChange={(event) => setGlobalFilter(event.target.value)}
-          className="max-w-md sm:max-w-lg border-2 w-full sm:w-auto"
+          className="max-w-xl border-2 w-full"
         />
         <div className="flex gap-4 w-full sm:w-auto">
           <Select
