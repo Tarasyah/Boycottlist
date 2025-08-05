@@ -25,10 +25,12 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import type { Company } from "@/types";
+import { RedSpillEffect } from "./red-spill-effect";
 
 export function BoycottList({ companies }: { companies: Company[] }) {
   const [columnFilters, setColumnFilters] =
     React.useState<ColumnFiltersState>([]);
+  const [isSpilling, setIsSpilling] = React.useState(false);
 
   const columns: ColumnDef<Company>[] = [
     {
@@ -78,8 +80,13 @@ export function BoycottList({ companies }: { companies: Company[] }) {
     },
   });
 
+  const handleRowClick = () => {
+    setIsSpilling(true);
+  };
+
   return (
     <div className="w-full">
+       {isSpilling && <RedSpillEffect onCompleted={() => setIsSpilling(false)} />}
       <div className="flex justify-center items-center py-4">
         <Input
           placeholder="Filter by company name..."
@@ -114,6 +121,8 @@ export function BoycottList({ companies }: { companies: Company[] }) {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  onClick={handleRowClick}
+                  className="cursor-pointer"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="py-3">

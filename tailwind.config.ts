@@ -88,10 +88,20 @@ export default {
             height: '0',
           },
         },
+        'spill-down': {
+          '0%': { height: '0%' },
+          '100%': { height: '100%' },
+        },
+        'fade-out': {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'spill-down': 'spill-down 1s ease-out forwards',
+        'fade-out': 'fade-out 1s ease-in forwards',
       },
     },
   },
