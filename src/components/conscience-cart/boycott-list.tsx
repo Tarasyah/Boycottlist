@@ -50,20 +50,20 @@ export function BoycottList({ companies }: { companies: Company[] }) {
     {
       accessorKey: "Category",
       header: () => <div className="text-center">Category</div>,
-      cell: ({ row }) => <div className="p-2 sm:p-4 w-40 text-center">{row.getValue("Category")}</div>,
+      cell: ({ row }) => <div className="p-1 text-xs sm:text-sm sm:p-2 md:p-4 w-28 sm:w-32 md:w-40 text-center">{row.getValue("Category")}</div>,
     },
     {
       accessorKey: "Company Name",
       header: () => <div className="text-center">Company</div>,
       cell: ({ row }) => (
-        <div className="font-semibold p-2 sm:p-4 w-40 text-center">{row.getValue("Company Name")}</div>
+        <div className="font-semibold p-1 text-xs sm:text-sm sm:p-2 md:p-4 w-28 sm:w-32 md:w-40 text-center">{row.getValue("Company Name")}</div>
       ),
     },
     {
       accessorKey: "Involvement",
       header: () => <div className="text-center">Involvement</div>,
       cell: ({ row }) => (
-        <div className="text-muted-foreground max-w-2xl p-2 sm:p-4 text-center">
+        <div className="text-muted-foreground max-w-xs sm:max-w-md md:max-w-2xl p-1 text-xs sm:text-sm sm:p-2 md:p-4 text-center">
           {row.getValue("Involvement")}
         </div>
       ),
@@ -74,13 +74,13 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       cell: ({ row }) => {
         const value = row.getValue("Sub-companies / Brands") as { Brands: string };
         const brands = value?.Brands?.trim();
-        return <div className="p-2 sm:p-4 w-40 text-center">{brands ? brands : "N/A"}</div>;
+        return <div className="p-1 text-xs sm:text-sm sm:p-2 md:p-4 w-28 sm:w-32 md:w-40 text-center">{brands ? brands : "N/A"}</div>;
       },
     },
     {
       accessorKey: "Country",
       header: () => <div className="text-center">Country</div>,
-      cell: ({ row }) => <div className="p-2 sm:p-4 w-32 text-center">{row.getValue("Country")}</div>,
+      cell: ({ row }) => <div className="p-1 text-xs sm:text-sm sm:p-2 md:p-4 w-24 sm:w-28 md:w-32 text-center">{row.getValue("Country")}</div>,
     },
   ];
 
@@ -119,7 +119,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
           placeholder="Search by company or brand..."
           value={globalFilter ?? ""}
           onChange={(event) => setGlobalFilter(event.target.value)}
-          className="max-w-sm border-2"
+          className="max-w-xs sm:max-w-sm border-2"
         />
       </div>
       <div className="rounded-lg border shadow-sm bg-card">
@@ -128,7 +128,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="first:pl-4">
+                  <TableHead key={header.id} className="first:pl-2 sm:first:pl-4">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -150,7 +150,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
                   className="cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="py-3 first:pl-4">
+                    <TableCell key={cell.id} className="py-2 sm:py-3 first:pl-2 sm:first:pl-4">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
