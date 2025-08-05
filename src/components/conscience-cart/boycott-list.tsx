@@ -50,13 +50,13 @@ export function BoycottList({ companies }: { companies: Company[] }) {
     {
       accessorKey: "Category",
       header: "Category",
-      cell: ({ row }) => <div className="p-2 sm:p-4">{row.getValue("Category")}</div>,
+      cell: ({ row }) => <div className="p-2 sm:p-4 w-40">{row.getValue("Category")}</div>,
     },
     {
       accessorKey: "Company Name",
       header: "Company",
       cell: ({ row }) => (
-        <div className="font-semibold p-2 sm:p-4">{row.getValue("Company Name")}</div>
+        <div className="font-semibold p-2 sm:p-4 w-48">{row.getValue("Company Name")}</div>
       ),
     },
     {
@@ -74,13 +74,13 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       cell: ({ row }) => {
         const value = row.getValue("Sub-companies / Brands") as { Brands: string };
         const brands = value?.Brands?.trim();
-        return <div className="p-2 sm:p-4">{brands ? brands : "N/A"}</div>;
+        return <div className="p-2 sm:p-4 w-64">{brands ? brands : "N/A"}</div>;
       },
     },
     {
       accessorKey: "Country",
       header: "Country",
-      cell: ({ row }) => <div className="p-2 sm:p-4">{row.getValue("Country")}</div>,
+      cell: ({ row }) => <div className="p-2 sm:p-4 w-32">{row.getValue("Country")}</div>,
     },
   ];
 
