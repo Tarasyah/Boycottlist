@@ -33,35 +33,35 @@ export function BoycottList({ companies }: { companies: Company[] }) {
 
   const columns: ColumnDef<Company>[] = [
     {
-      accessorKey: "category",
+      accessorKey: "Category",
       header: "Category",
-      cell: ({ row }) => <div>{row.getValue("category")}</div>,
+      cell: ({ row }) => <div>{row.getValue("Category")}</div>,
     },
     {
-      accessorKey: "name",
+      accessorKey: "Company Name",
       header: "Company Name",
       cell: ({ row }) => (
-        <div className="font-semibold">{row.getValue("name")}</div>
+        <div className="font-semibold">{row.getValue("Company Name")}</div>
       ),
     },
     {
-      accessorKey: "involvement",
+      accessorKey: "Involvement",
       header: "Involvement",
       cell: ({ row }) => (
         <div className="text-muted-foreground max-w-sm">
-          {row.getValue("involvement")}
+          {row.getValue("Involvement")}
         </div>
       ),
     },
     {
-      accessorKey: "subCompanies",
+      accessorKey: "Sub-companies / Brands",
       header: "Sub-companies / Brands",
-      cell: ({ row }) => <div>{row.getValue("subCompanies")}</div>,
+      cell: ({ row }) => <div>{row.getValue("Sub-companies / Brands")}</div>,
     },
     {
-      accessorKey: "country",
+      accessorKey: "Country",
       header: "Country",
-      cell: ({ row }) => <div>{row.getValue("country")}</div>,
+      cell: ({ row }) => <div>{row.getValue("Country")}</div>,
     },
   ];
 
@@ -87,9 +87,9 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       <div className="flex justify-center items-center py-4">
         <Input
           placeholder="Filter by company name..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("Company Name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
+            table.getColumn("Company Name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

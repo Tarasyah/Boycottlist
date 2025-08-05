@@ -50,7 +50,7 @@ export function ModerationForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       companyId: company.id,
-      companyName: company.name,
+      companyName: company["Company Name"],
       reportType: type,
       details: "",
       source: "",
@@ -99,7 +99,7 @@ export function ModerationForm({
               <FormLabel>Details</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder={`Provide details for your ${type} of ${company.name}...`}
+                  placeholder={`Provide details for your ${type} of ${company["Company Name"]}...`}
                   {...field}
                   rows={4}
                 />

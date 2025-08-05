@@ -1,9 +1,8 @@
 export type Company = {
   id: string;
-  name: string;
-  category: string;
-  involvement: string;
-  subCompanies: string;
-  country: string;
-  logo: string; // Used as a hint for placeholder image generation
+  "Category": string;
+  "Company Name": string;
+  "Involvement": string;
+  "Sub-companies / Brands": string;
+  "Country": string;
 };
