@@ -59,14 +59,14 @@ export function BoycottList({ companies }: { companies: Company[] }) {
     const uniqueCategories = new Set(
       companies.map((c) => c.Category).filter(Boolean).sort()
     );
-    return ["All", ...Array.from(uniqueCategories)];
+    return ["All Categories", ...Array.from(uniqueCategories)];
   }, [companies]);
 
   const countries = React.useMemo(() => {
     const uniqueCountries = new Set(
       companies.map((c) => c.Country).filter(Boolean).sort()
     );
-    return ["All", ...Array.from(uniqueCountries)];
+    return ["All Countries", ...Array.from(uniqueCountries)];
   }, [companies]);
 
   const columns: ColumnDef<Company>[] = [
@@ -74,7 +74,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       accessorKey: "Category",
       header: () => <div className="text-center">Category</div>,
       cell: ({ row }) => (
-        <div className="p-1 text-xs sm:text-sm sm:p-2 md:p-4 w-auto text-center">
+        <div className="p-1 text-xs sm:text-sm sm:p-2 md:p-4 w-28 sm:w-32 md:w-36 text-center">
           {row.getValue("Category")}
         </div>
       ),
@@ -92,7 +92,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       accessorKey: "Involvement",
       header: () => <div className="text-center">Involvement</div>,
       cell: ({ row }) => (
-        <div className="text-muted-foreground max-w-sm sm:max-w-md md:max-w-xl p-1 text-xs sm:text-sm sm:p-2 md:p-4 text-center">
+        <div className="text-muted-foreground max-w-sm sm:max-w-md md:max-w-4xl p-1 text-xs sm:text-sm sm:p-2 md:p-4 text-center">
           {row.getValue("Involvement")}
         </div>
       ),
@@ -165,10 +165,10 @@ export function BoycottList({ companies }: { companies: Company[] }) {
         <div className="flex gap-4 w-full sm:w-auto">
           <Select
             value={
-              (table.getColumn("Category")?.getFilterValue() as string) ?? "All"
+              (table.getColumn("Category")?.getFilterValue() as string) ?? "All Categories"
             }
             onValueChange={(value) =>
-              table.getColumn("Category")?.setFilterValue(value === "All" ? undefined : value)
+              table.getColumn("Category")?.setFilterValue(value === "All Categories" ? undefined : value)
             }
           >
             <SelectTrigger className="w-full sm:w-[180px]">
@@ -184,10 +184,10 @@ export function BoycottList({ companies }: { companies: Company[] }) {
           </Select>
           <Select
             value={
-              (table.getColumn("Country")?.getFilterValue() as string) ?? "All"
+              (table.getColumn("Country")?.getFilterValue() as string) ?? "All Countries"
             }
             onValueChange={(value) =>
-              table.getColumn("Country")?.setFilterValue(value === "All" ? undefined : value)
+              table.getColumn("Country")?.setFilterValue(value === "All Countries" ? undefined : value)
             }
           >
             <SelectTrigger className="w-full sm:w-[180px]">
