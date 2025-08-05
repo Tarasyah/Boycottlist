@@ -33,20 +33,35 @@ export function BoycottList({ companies }: { companies: Company[] }) {
 
   const columns: ColumnDef<Company>[] = [
     {
+      accessorKey: "category",
+      header: "Category",
+      cell: ({ row }) => <div>{row.getValue("category")}</div>,
+    },
+    {
       accessorKey: "name",
-      header: "Company",
+      header: "Company Name",
       cell: ({ row }) => (
-        <div className="font-semibold text-base">{row.getValue("name")}</div>
+        <div className="font-semibold">{row.getValue("name")}</div>
       ),
     },
     {
-      accessorKey: "reason",
-      header: "Reason for Boycott",
+      accessorKey: "involvement",
+      header: "Involvement",
       cell: ({ row }) => (
         <div className="text-muted-foreground max-w-sm">
-          {row.getValue("reason")}
+          {row.getValue("involvement")}
         </div>
       ),
+    },
+    {
+      accessorKey: "subCompanies",
+      header: "Sub-companies / Brands",
+      cell: ({ row }) => <div>{row.getValue("subCompanies")}</div>,
+    },
+    {
+      accessorKey: "country",
+      header: "Country",
+      cell: ({ row }) => <div>{row.getValue("country")}</div>,
     },
   ];
 
