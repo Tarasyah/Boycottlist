@@ -86,7 +86,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
        {isSpilling && <RedSpillEffect onCompleted={() => setIsSpilling(false)} />}
       <div className="flex justify-center items-center py-4">
         <Input
-          placeholder="Filter by company name..."
+          placeholder="search by company name"
           value={(table.getColumn("Company Name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("Company Name")?.setFilterValue(event.target.value)
