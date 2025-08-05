@@ -92,7 +92,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       accessorKey: "Involvement",
       header: () => <div className="text-center">Involvement</div>,
       cell: ({ row }) => (
-        <div className="text-muted-foreground max-w-sm sm:max-w-md md:max-w-4xl p-1 text-xs sm:text-sm sm:p-2 md:p-4 text-center">
+        <div className="text-muted-foreground max-w-sm sm:max-w-md md:max-w-lg p-1 text-xs sm:text-sm sm:p-2 md:p-4 text-center">
           {row.getValue("Involvement")}
         </div>
       ),
@@ -160,7 +160,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
           placeholder="Search by company or brand..."
           value={globalFilter ?? ""}
           onChange={(event) => setGlobalFilter(event.target.value)}
-          className="max-w-xs sm:max-w-sm border-2 w-full sm:w-auto"
+          className="max-w-md sm:max-w-lg border-2 w-full sm:w-auto"
         />
         <div className="flex gap-4 w-full sm:w-auto">
           <Select
