@@ -56,7 +56,10 @@ export function BoycottList({ companies }: { companies: Company[] }) {
     {
       accessorKey: "Sub-companies / Brands",
       header: "Sub-companies / Brands",
-      cell: ({ row }) => <div>{row.getValue("Sub-companies / Brands")}</div>,
+      cell: ({ row }) => {
+        const value = row.getValue("Sub-companies / Brands") as string;
+        return <div>{value ? value : "N/A"}</div>;
+      },
     },
     {
       accessorKey: "Country",
