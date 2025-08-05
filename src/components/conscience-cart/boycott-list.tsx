@@ -94,14 +94,14 @@ export function BoycottList({ companies }: { companies: Company[] }) {
   return (
     <div className="w-full">
        {isSpilling && <RedSpillEffect onCompleted={() => setIsSpilling(false)} />}
-      <div className="flex justify-center items-center py-4">
+      <div className="flex justify-center items-center pb-4">
         <Input
           placeholder="search by company name"
           value={(table.getColumn("Company Name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("Company Name")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm border-2"
         />
       </div>
       <div className="rounded-lg border shadow-sm bg-card">
