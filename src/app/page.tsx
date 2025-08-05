@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Handshake } from "lucide-react";
 
 export default async function Home() {
   const companies = await getBoycottList();
@@ -33,6 +33,7 @@ export default async function Home() {
           <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary tracking-tight">
             Palestine Boycott Guide
           </h1>
+          <Handshake className="h-10 w-10 text-primary" />
         </div>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           A resource for conscious consumers to support Palestinian freedom.
