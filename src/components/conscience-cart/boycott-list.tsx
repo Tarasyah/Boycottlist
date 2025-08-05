@@ -74,7 +74,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       cell: ({ row }) => {
         const value = row.getValue("Sub-companies / Brands") as { Brands: string };
         const brands = value?.Brands?.trim();
-        return <div className="p-2 sm:p-4 w-64 text-center">{brands ? brands : "N/A"}</div>;
+        return <div className="p-2 sm:p-4 w-56 text-center">{brands ? brands : "N/A"}</div>;
       },
     },
     {
