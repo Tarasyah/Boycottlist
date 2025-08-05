@@ -2,18 +2,19 @@
 
 import * as React from "react";
 import Image from "next/image";
-import type { ColumnDef, SortingState } from "@tanstack/react-table";
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+} from "@tanstack/react-table";
 import {
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -22,10 +23,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 import type { Company } from "@/types";
 
 export function BoycottList({ companies }: { companies: Company[] }) {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] =
+    React.useState<ColumnFiltersState>([]);
 
   const columns: ColumnDef<Company>[] = [
     {
@@ -47,15 +50,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
     },
     {
       accessorKey: "name",
-      header: ({ column }) => (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Company
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      ),
+      header: "Company",
       cell: ({ row }) => (
         <div className="font-semibold text-base">{row.getValue("name")}</div>
       ),
@@ -74,17 +69,27 @@ export function BoycottList({ companies }: { companies: Company[] }) {
   const table = useReactTable({
     data: companies,
     columns,
-    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     state: {
-      sorting,
+      columnFilters,
     },
   });
 
   return (
     <div className="w-full">
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Filter by company name..."
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("name")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+      </div>
       <div className="rounded-lg border shadow-sm bg-card">
         <Table>
           <TableHeader>
