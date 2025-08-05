@@ -3,9 +3,9 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ConscienceCart - Ethical Consumption Made Easy",
+  title: "Palestine Boycott Guide",
   description:
-    "A community-driven resource to help you make informed and ethical purchasing decisions. Browse, search, and contribute to a global list of companies involved in ethical conflicts.",
+    "A resource for conscious consumers to support Palestinian freedom.",
 };
 
 export default function RootLayout({
