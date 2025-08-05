@@ -22,7 +22,7 @@ export default async function Home() {
     },
     {
       name: "Who Profits",
-      url: "https://www.whoprofits.org/companies/find?Text=&Name=&Category=11&Sector=&Headquarter=&Revenue=&Traded=&Presence=&Settlement=&Type=Table",
+      url: "https://www.whoprofits.org/companies/find?Text=&Name=&Category=&Sector=&Headquarter=&Revenue=&Traded=&Presence=&Settlement=&Type=Table",
     },
   ];
 
