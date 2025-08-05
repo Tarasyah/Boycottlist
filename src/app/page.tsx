@@ -50,7 +50,7 @@ export default async function Home() {
 
       <footer className="mt-12">
         <Card className="mb-4 relative bg-card overflow-hidden group">
-          <div className="absolute inset-0 bg-destructive/80 transition-all duration-1000 ease-in-out transform -translate-x-full group-hover:translate-x-0"></div>
+          <div className="absolute inset-0 bg-red-800 transition-all duration-1000 ease-in-out transform -translate-x-full group-hover:translate-x-0"></div>
           <CardContent className="p-4 text-center relative z-10 group-hover:text-destructive-foreground transition-colors duration-1000">
             <p>
               This list currently includes{" "}
