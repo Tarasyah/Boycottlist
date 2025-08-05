@@ -56,12 +56,16 @@ export function BoycottList({ companies }: { companies: Company[] }) {
   const [isSpilling, setIsSpilling] = React.useState(false);
 
   const categories = React.useMemo(() => {
-    const uniqueCategories = new Set(companies.map((c) => c.Category).sort());
+    const uniqueCategories = new Set(
+      companies.map((c) => c.Category).filter(Boolean).sort()
+    );
     return ["All", ...Array.from(uniqueCategories)];
   }, [companies]);
 
   const countries = React.useMemo(() => {
-    const uniqueCountries = new Set(companies.map((c) => c.Country).sort());
+    const uniqueCountries = new Set(
+      companies.map((c) => c.Country).filter(Boolean).sort()
+    );
     return ["All", ...Array.from(uniqueCountries)];
   }, [companies]);
 
@@ -70,7 +74,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       accessorKey: "Category",
       header: () => <div className="text-center">Category</div>,
       cell: ({ row }) => (
-        <div className="p-1 text-xs sm:text-sm sm:p-2 md:p-4 w-24 sm:w-28 md:w-32 text-center">
+        <div className="p-1 text-xs sm:text-sm sm:p-2 md:p-4 w-auto text-center">
           {row.getValue("Category")}
         </div>
       ),
@@ -88,7 +92,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       accessorKey: "Involvement",
       header: () => <div className="text-center">Involvement</div>,
       cell: ({ row }) => (
-        <div className="text-muted-foreground max-w-sm sm:max-w-md md:max-w-5xl p-1 text-xs sm:text-sm sm:p-2 md:p-4 text-center">
+        <div className="text-muted-foreground max-w-sm sm:max-w-md md:max-w-xl p-1 text-xs sm:text-sm sm:p-2 md:p-4 text-center">
           {row.getValue("Involvement")}
         </div>
       ),
