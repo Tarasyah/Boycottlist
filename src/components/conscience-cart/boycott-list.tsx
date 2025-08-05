@@ -5,12 +5,14 @@ import * as React from "react";
 import type {
   ColumnDef,
   ColumnFiltersState,
+  SortingState,
 } from "@tanstack/react-table";
 import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -28,28 +30,30 @@ import type { Company } from "@/types";
 import { RedSpillEffect } from "./red-spill-effect";
 
 export function BoycottList({ companies }: { companies: Company[] }) {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] =
     React.useState<ColumnFiltersState>([]);
+  const [globalFilter, setGlobalFilter] = React.useState("");
   const [isSpilling, setIsSpilling] = React.useState(false);
 
   const columns: ColumnDef<Company>[] = [
     {
       accessorKey: "Category",
       header: "Category",
-      cell: ({ row }) => <div>{row.getValue("Category")}</div>,
+      cell: ({ row }) => <div className="p-2 sm:p-4">{row.getValue("Category")}</div>,
     },
     {
       accessorKey: "Company Name",
       header: "Company",
       cell: ({ row }) => (
-        <div className="font-semibold">{row.getValue("Company Name")}</div>
+        <div className="font-semibold p-2 sm:p-4">{row.getValue("Company Name")}</div>
       ),
     },
     {
       accessorKey: "Involvement",
       header: "Involvement",
       cell: ({ row }) => (
-        <div className="text-muted-foreground max-w-xs sm:max-w-sm">
+        <div className="text-muted-foreground max-w-xs sm:max-w-sm p-2 sm:p-4">
           {row.getValue("Involvement")}
         </div>
       ),
@@ -60,22 +64,25 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       cell: ({ row }) => {
         const value = row.getValue("Sub-companies / Brands") as { Brands: string };
         const brands = value?.Brands?.trim();
-        return <div>{brands ? brands : "N/A"}</div>;
+        return <div className="p-2 sm:p-4">{brands ? brands : "N/A"}</div>;
       },
     },
     {
       accessorKey: "Country",
       header: "Country",
-      cell: ({ row }) => <div>{row.getValue("Country")}</div>,
+      cell: ({ row }) => <div className="p-2 sm:p-4">{row.getValue("Country")}</div>,
     },
   ];
 
   const table = useReactTable({
     data: companies,
     columns,
+    onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
+    onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     initialState: {
       pagination: {
@@ -83,7 +90,9 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       },
     },
     state: {
+      sorting,
       columnFilters,
+      globalFilter,
     },
   });
 
@@ -93,14 +102,12 @@ export function BoycottList({ companies }: { companies: Company[] }) {
 
   return (
     <div className="w-full">
-       {isSpilling && <RedSpillEffect onCompleted={() => setIsSpilling(false)} />}
+      {isSpilling && <RedSpillEffect onCompleted={() => setIsSpilling(false)} />}
       <div className="flex justify-center items-center pb-4">
         <Input
-          placeholder="search by company name"
-          value={(table.getColumn("Company Name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("Company Name")?.setFilterValue(event.target.value)
-          }
+          placeholder="Search by company or brand..."
+          value={globalFilter ?? ""}
+          onChange={(event) => setGlobalFilter(event.target.value)}
           className="max-w-sm border-2"
         />
       </div>
