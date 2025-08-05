@@ -49,13 +49,15 @@ export default async function Home() {
       </main>
 
       <footer className="mt-12">
-        <div className="text-center text-muted-foreground mb-4">
-          <p>
-            This list currently includes{" "}
-            <span className="font-bold text-primary">{companies.length}</span>{" "}
-            companies.
-          </p>
-        </div>
+        <Card className="mb-4 hover:bg-destructive/10 transition-colors duration-500 ease-in-out">
+          <CardContent className="p-4 text-center">
+            <p>
+              This list currently includes{" "}
+              <span className="font-bold text-primary">{companies.length}</span>{" "}
+              companies.
+            </p>
+          </CardContent>
+        </Card>
         <Card>
           <CardHeader>
             <CardTitle>Sources</CardTitle>
