@@ -3,6 +3,8 @@ export type Company = {
   "Category": string;
   "Company Name": string;
   "Involvement": string;
-  "Sub-companies / Brands": string;
+  "Sub-companies / Brands": {
+    "Brands": string;
+  };
   "Country": string;
 };
