@@ -88,15 +88,16 @@ export default {
             height: '0',
           },
         },
-        fall: {
-          '0%': { transform: 'translateY(-100%)', opacity: '1' },
-          '100%': { transform: 'translateY(100vh)', opacity: '0.5' },
+        flow: {
+          '0%': { transform: 'translateY(-100%) translateX(0) scale(1)', opacity: '1' },
+          '50%': { transform: 'translateX(20px) scale(1.1)' },
+          '100%': { transform: 'translateY(100vh) translateX(-20px) scale(0.8)', opacity: '0.5' },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        fall: 'fall linear forwards',
+        flow: 'flow ease-in-out forwards',
       },
     },
   },

@@ -9,11 +9,11 @@ interface RedSpillEffectProps {
   rockets?: number;
 }
 
-export function RedSpillEffect({ onCompleted, rockets = 15 }: RedSpillEffectProps) {
+export function RedSpillEffect({ onCompleted, rockets = 25 }: RedSpillEffectProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onCompleted();
-    }, 2000); // Duration of the animation
+    }, 4000); // Duration of the animation
 
     return () => clearTimeout(timer);
   }, [onCompleted]);
@@ -23,14 +23,14 @@ export function RedSpillEffect({ onCompleted, rockets = 15 }: RedSpillEffectProp
       {Array.from({ length: rockets }).map((_, i) => {
         const style = {
           left: `${Math.random() * 100}%`,
-          animationDuration: `${Math.random() * 1 + 1}s`,
-          animationDelay: `${Math.random() * 0.5}s`,
+          animationDuration: `${Math.random() * 2 + 2}s`,
+          animationDelay: `${Math.random() * 1}s`,
         };
         return (
           <div
             key={i}
             className={cn(
-              "absolute top-0 text-red-800 animate-fall",
+              "absolute top-0 text-red-800 animate-flow",
             )}
             style={style}
           >
