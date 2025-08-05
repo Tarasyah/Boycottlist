@@ -49,7 +49,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       accessorKey: "Involvement",
       header: "Involvement",
       cell: ({ row }) => (
-        <div className="text-muted-foreground max-w-sm">
+        <div className="text-muted-foreground max-w-xs sm:max-w-sm">
           {row.getValue("Involvement")}
         </div>
       ),
@@ -132,7 +132,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
                   className="cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="py-3 px-4">
+                    <TableCell key={cell.id} className="py-3 first:pl-4">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
