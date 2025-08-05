@@ -6,36 +6,14 @@ import type { ColumnDef, SortingState } from "@tanstack/react-table";
 import {
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {
-  ArrowUpDown,
-  Link as LinkIcon,
-  MoreVertical,
-  Search,
-  Flag,
-  MessageSquarePlus,
-  TriangleAlert,
-} from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
+
 import {
   Table,
   TableBody,
@@ -44,30 +22,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ModerationForm } from "@/components/conscience-cart/moderation-form";
 import type { Company } from "@/types";
-
-type ModerationState = {
-  isOpen: boolean;
-  company: Company | null;
-  type: "flag" | "suggest" | "report" | null;
-};
 
 export function BoycottList({ companies }: { companies: Company[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [globalFilter, setGlobalFilter] = React.useState("");
-  const [moderationState, setModerationState] = React.useState<ModerationState>({
-    isOpen: false,
-    company: null,
-    type: null,
-  });
-
-  const handleModeration = (
-    company: Company,
-    type: "flag" | "suggest" | "report"
-  ) => {
-    setModerationState({ isOpen: true, company, type });
-  };
 
   const columns: ColumnDef<Company>[] = [
     {
@@ -103,21 +61,6 @@ export function BoycottList({ companies }: { companies: Company[] }) {
       ),
     },
     {
-      accessorKey: "category",
-      header: ({ column }) => (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Category
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      ),
-      cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("category")}</div>
-      ),
-    },
-    {
       accessorKey: "reason",
       header: "Reason for Boycott",
       cell: ({ row }) => (
@@ -126,94 +69,22 @@ export function BoycottList({ companies }: { companies: Company[] }) {
         </div>
       ),
     },
-    {
-      id: "source",
-      header: () => <div className="text-center">Source</div>,
-      cell: ({ row }) => (
-        <div className="text-center">
-          <Button asChild variant="ghost" size="icon">
-            <a
-              href={row.original.source}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Source for ${row.original.name}`}
-            >
-              <LinkIcon className="h-5 w-5" />
-            </a>
-          </Button>
-        </div>
-      ),
-    },
-    {
-      id: "actions",
-      cell: ({ row }) => {
-        const company = row.original;
-        return (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreVertical className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => handleModeration(company, "flag")}>
-                <Flag className="mr-2 h-4 w-4" />
-                <span>Flag for Review</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => handleModeration(company, "suggest")}
-              >
-                <MessageSquarePlus className="mr-2 h-4 w-4" />
-                <span>Suggest Correction</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => handleModeration(company, "report")}
-              >
-                <TriangleAlert className="mr-2 h-4 w-4" />
-                <span>Report Inaccuracy</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        );
-      },
-    },
   ];
 
   const table = useReactTable({
     data: companies,
     columns,
     onSortingChange: setSorting,
-    onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     state: {
       sorting,
-      globalFilter,
     },
   });
 
-  const moderationTitles = {
-    flag: "Flag for Review",
-    suggest: "Suggest a Correction",
-    report: "Report Inaccuracy",
-  };
-
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
-        <div className="relative w-full">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-          <Input
-            placeholder="Search for a company or category..."
-            value={globalFilter ?? ""}
-            onChange={(event) => setGlobalFilter(event.target.value)}
-            className="w-full pl-10 h-12 text-lg rounded-md shadow-sm"
-          />
-        </div>
-      </div>
       <div className="rounded-lg border shadow-sm bg-card">
         <Table>
           <TableHeader>
@@ -255,7 +126,7 @@ export function BoycottList({ companies }: { companies: Company[] }) {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results found for "{globalFilter}".
+                  No companies found.
                 </TableCell>
               </TableRow>
             )}
@@ -280,41 +151,6 @@ export function BoycottList({ companies }: { companies: Company[] }) {
           Next
         </Button>
       </div>
-
-      <Dialog
-        open={moderationState.isOpen}
-        onOpenChange={(isOpen) =>
-          setModerationState((prev) => ({ ...prev, isOpen }))
-        }
-      >
-        <DialogContent className="sm:max-w-[480px]">
-          {moderationState.company && moderationState.type && (
-            <>
-              <DialogHeader>
-                <DialogTitle>
-                  {moderationTitles[moderationState.type]}:{" "}
-                  {moderationState.company.name}
-                </DialogTitle>
-                <DialogDescription>
-                  Your feedback is valuable for maintaining the integrity of this
-                  list. All submissions are reviewed by moderators.
-                </DialogDescription>
-              </DialogHeader>
-              <ModerationForm
-                company={moderationState.company}
-                type={moderationState.type}
-                onFinished={() =>
-                  setModerationState({
-                    isOpen: false,
-                    company: null,
-                    type: null,
-                  })
-                }
-              />
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

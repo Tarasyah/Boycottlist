@@ -15,7 +15,7 @@ export default async function Home() {
           </h1>
         </div>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          An aggregated, community-moderated list of companies to support ethical consumption. Search, learn, and contribute to a more just marketplace.
+          An aggregated, community-moderated list of companies to support ethical consumption.
         </p>
       </header>
       <main>
